@@ -13,14 +13,14 @@
         .container .call-out{
             display: inline-block;
             width: 580px;
-            height: 250px;
             text-align: center;
         }
-        .padre {  
+        .container .call-out .padre {  
             width: 580px;
             height: 200px;
             display: flex;
             border: 1px solid black;
+            text-align: center;
         }
         .tipo {
             flex-grow: 1;
@@ -41,14 +41,14 @@
             <img class="animal" src="./assets/img/puerco2.jpg" draggable="true" ondragstart="drag(event)" id="drag3" name="fuego"/>
         </div>
         <div class="padre">
-            <div class="tipo" id="fuego" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="tipo" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
          </div>      
     </section>
     <section class="call-out">
-        <select id = "selectTrack" multiple onchange="cambiarTrack(this.options[this.selectedIndex]);">
-            <option path="./assets/audio/gato.mp3">Miau</option>
-            <option path="./assets/audio/perro.mp3">Gua gua</option>
-            <option path="./assets/audio/vaca.mp3">Muuuu</option>
+        <select id= "selectTrack" onchange="cambiarTrack(this.options[this.selectedIndex]);">
+            <option path="./assets/audio/gato.mp3">Maullar</option>
+            <option path="./assets/audio/perro.mp3">Ladrar</option>
+            <option path="./assets/audio/vaca.mp3">Mugir</option>
         </select>
         <div id="reproductorBox"></div>
     </section>
