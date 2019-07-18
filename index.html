@@ -6,11 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="https://img.icons8.com/ios/50/000000/cat.png">
     <title>Master Card</title>
+    <style>
+        #imagenes {
+            width: 580px;
+            height: 250px;
+            text-align: center;
+        }
+        .padre {  
+            width: 580px;
+            height: 200px;
+            display: flex;
+            border: 1px solid black;
+        }
+        .tipo {
+            flex-grow: 1;
+        }
+        .animal {
+            margin: 10px;
+            height: 80px;
+            width: 80px;
+        }
+    </style>
 </head>
 <body>
+    <section id="imagenes" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div>
+            <img class="animal" src="https://dummyimage.com/80x80/1d46eb/fff" draggable="true" ondragstart="drag(event)" id="drag1" name="fuego"/>
+            <img class="animal" src="https://dummyimage.com/80x80/eb1e47/fff" draggable="true" ondragstart="drag(event)" id="drag2" name="agua"/>
+            <img class="animal" src="https://dummyimage.com/80x80/25eb1e/fff" draggable="true" ondragstart="drag(event)" id="drag3" name="fuego"/>
+        </div>
+        <div class="padre">
+            <div class="tipo" id="fuego" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+         </div>      
+    </section>
 
+    <script type="text/javascript">
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
 
-
-    <script></script>
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
 </body>
 </html>
