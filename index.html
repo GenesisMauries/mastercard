@@ -19,8 +19,11 @@
             width: 580px;
             height: 200px;
             display: flex;
-            border: 1px solid black;
+            border: 1px dashed black;
             text-align: center;
+        }
+        .container .call-out #reproductorBox{
+            margin-top: 50px;
         }
         .tipo {
             flex-grow: 1;
@@ -30,30 +33,31 @@
             height: 150px;
             width: 150px;
         }
+
     </style>
 </head>
 <body>
     <section class="container">
-    <section class="call-out" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <div>
-            <img class="animal" src="./assets/img/gallo2.png" draggable="true" ondragstart="drag(event)" id="drag1" name="fuego"/>
-            <img class="animal" src="./assets/img/leon2.png" draggable="true" ondragstart="drag(event)" id="drag2" name="agua"/>
-            <img class="animal" src="./assets/img/puerco2.jpg" draggable="true" ondragstart="drag(event)" id="drag3" name="fuego"/>
-        </div>
-        <div class="padre">
-            <div class="tipo" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-         </div>      
+        <section class="call-out" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div>
+                <img class="animal" src="./assets/img/gallo2.png" draggable="true" ondragstart="drag(event)" id="drag1" name="fuego"/>
+                <img class="animal" src="./assets/img/leon2.png" draggable="true" ondragstart="drag(event)" id="drag2" name="agua"/>
+                <img class="animal" src="./assets/img/puerco2.jpg" draggable="true" ondragstart="drag(event)" id="drag3" name="fuego"/>
+            </div>
+            <div class="padre">
+                <div class="tipo" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </div>      
+        </section>
+        <section class="call-out">
+            <select id= "selectTrack" onchange="cambiarTrack(this.options[this.selectedIndex]);">
+                <option path="./assets/audio/gato.mp3">Maullar</option>
+                <option path="./assets/audio/perro.mp3">Ladrar</option>
+             <option path="./assets/audio/vaca.mp3">Mugir</option>
+            </select>
+            <div id="reproductorBox"></div>
+        </section>
     </section>
-    <section class="call-out">
-        <select id= "selectTrack" onchange="cambiarTrack(this.options[this.selectedIndex]);">
-            <option path="./assets/audio/gato.mp3">Maullar</option>
-            <option path="./assets/audio/perro.mp3">Ladrar</option>
-            <option path="./assets/audio/vaca.mp3">Mugir</option>
-        </select>
-        <div id="reproductorBox"></div>
-    </section>
-</section>
-   
+
     <script type="text/javascript">
         // Drag and drop
         function allowDrop(ev) {
