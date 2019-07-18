@@ -7,7 +7,11 @@
     <link rel="shortcut icon" href="https://img.icons8.com/ios/50/000000/cat.png">
     <title>Master Card</title>
     <style>
-        #imagenes {
+        .container{
+            width:100%;
+        }
+        .container .call-out{
+            display: inline-block;
             width: 580px;
             height: 250px;
             text-align: center;
@@ -29,7 +33,8 @@
     </style>
 </head>
 <body>
-    <section id="imagenes" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <section class="container">
+    <section class="call-out" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div>
             <img class="animal" src="./assets/img/gallo2.png" draggable="true" ondragstart="drag(event)" id="drag1" name="fuego"/>
             <img class="animal" src="./assets/img/leon2.png" draggable="true" ondragstart="drag(event)" id="drag2" name="agua"/>
@@ -39,8 +44,18 @@
             <div class="tipo" id="fuego" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
          </div>      
     </section>
-
+    <section class="call-out">
+        <select id = "selectTrack" multiple onchange="cambiarTrack(this.options[this.selectedIndex]);">
+            <option path="./assets/audio/gato.mp3">Miau</option>
+            <option path="./assets/audio/perro.mp3">Gua gua</option>
+            <option path="./assets/audio/vaca.mp3">Muuuu</option>
+        </select>
+        <div id="reproductorBox"></div>
+    </section>
+</section>
+   
     <script type="text/javascript">
+        // Drag and drop
         function allowDrop(ev) {
             ev.preventDefault();
         }
@@ -53,6 +68,37 @@
             var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
         }
+        // Audio
+        function cambiarTrack(track) {
+            var path =  track.getAttribute("path")
+            viejo_audio = document.getElementById("reproductor")
+            audio_padre = viejo_audio.parentNode
+            audio_padre.removeChild(viejo_audio)
+            nuevo_audio = document.createElement("audio")
+            nuevo_audio.setAttribute("id","reproductor")
+            nuevo_audio.setAttribute("controls", "controls")
+            source = document.createElement("source")
+            source.setAttribute("src", path)
+            source.setAttribute("type", "audio/mpeg")
+            source.setAttribute("id", "reproductorSource")
+            nuevo_audio.appendChild(source)
+            audio_padre.appendChild(nuevo_audio)
+        }
+        function cargarReproductor() {
+            var select = document.getElementById("selectTrack")
+            var path = select.options[0].getAttribute("path")
+            nuevo_audio = document.createElement("audio")
+            nuevo_audio.setAttribute("id","reproductor")
+            nuevo_audio.setAttribute("controls", "controls")       
+            source = document.createElement("source")
+            source.setAttribute("src", path)
+            source.setAttribute("type", "audio/mpeg")
+            source.setAttribute("id", "reproductorSource")
+            nuevo_audio.appendChild(source)
+            padre = document.getElementById("reproductorBox")
+            padre.appendChild(nuevo_audio)
+        }
+        cargarReproductor();
     </script>
 </body>
 </html>
